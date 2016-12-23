@@ -6,9 +6,9 @@ class File {
 
     init(_ fileName: String) {
         path = (NSTemporaryDirectory() + fileName) as String
-        //path += fileName
     }
 
+    //MARK: creating a new file if it is not exist
     func ifNotExist() {
         let fileManager = FileManager.default
 
@@ -17,7 +17,7 @@ class File {
         if fileManager.fileExists(atPath: path) {
             print("File exists")
         } else {
-            let data = ("Silentium est aureum" as NSString).data(using: String.Encoding.utf8.rawValue)
+            let data = ("Music log file was created a few seconds ago" as NSString).data(using: String.Encoding.utf8.rawValue)
 
             if !fileManager.createFile(atPath: path, contents: data, attributes: nil){
                 print("Impossible to create a file")
@@ -25,6 +25,7 @@ class File {
         }
     }
 
+    //MARK: Get all data from file
     func getData () -> String {
         let file: FileHandle? = FileHandle(forReadingAtPath: path)
         var tempStr = String()
@@ -45,12 +46,14 @@ class File {
         return tempStr
     }
 
+    //MARK: read roews from file
     func readRows () -> [String] {
         let temtStr = getData()
         let tempArray: [String] = temtStr.components(separatedBy: "\n")
         return tempArray
     }
 
+    //MARK: write rows to file
     func writeRows(_ cells: [String]) {
         // Set the contents
         var contents = String()
@@ -68,7 +71,7 @@ class File {
             try contents.write(toFile: path, atomically: false, encoding: String.Encoding.utf8)
         }
         catch let error as NSError {
-            print("Ooops! Error while sriting: \(error)")
+            print("Ooops! Error while writing: \(error)")
         }
     }
 

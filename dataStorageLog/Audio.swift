@@ -5,6 +5,7 @@ struct Audios{
     let notes = ["До","Ре","Ми","Фа","Со","Ля","Си"]
     var audioArray:[Audio] = []
 
+    //MARK: initialization of audioArray with all audiofiles
     init(){
 
         var bundle = String()
@@ -16,6 +17,7 @@ struct Audios{
 
     }
 
+    //MARK: playing a needed sound
     mutating func playback(_ buttonTitle: String) {
         var soundNumber = Int()
         switch buttonTitle {
@@ -34,7 +36,7 @@ struct Audios{
         case notes[6]:
             soundNumber = 6
         default:
-            print("Rusel was here")
+            print("rusel95 was here")
         }
         self.audioArray[soundNumber].playSound()
     }
@@ -49,6 +51,7 @@ struct Audio {
         self.audioURl = audioUrl
     }
 
+    //MARK: playing of audiofile
     mutating func playSound()  {
         self.audioPlayer = try! AVAudioPlayer(contentsOf: self.audioURl!)
         self.audioPlayer.prepareToPlay()

@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    //MARK: global variables
     var MyFile = File("test.txt")
     var MyAudios = Audios()
     var MyTime = Time()
@@ -17,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet var pianoButtons: [UIButton]!
     @IBOutlet weak var logTextView: UITextView!
 
+    //MARK: action buttons
     @IBAction func actionButton(_ sender: UIButton) {
 
         let buttonlabel = (sender.titleLabel?.text)!
@@ -31,6 +33,7 @@ class ViewController: UIViewController {
         logTextView.text = MyFile.getData()
     }
 
+    //MARK: actions after View is loaded
     override func viewDidLoad() {
         super.viewDidLoad()
 
